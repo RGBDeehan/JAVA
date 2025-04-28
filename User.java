@@ -1,43 +1,35 @@
 import java.util.ArrayList;
-import java.util.List;
+public abstract class User{
+    String name; int userId;
+    ArrayList<Book> borrowedBooks;
 
-public abstract class User {
-    protected String userId;
-    protected String name;
-    protected List<Book> borrowedBooks;
-    
-    public User(String userId, String name) {
-        this.userId = userId;
-        this.name = name;
-        this.borrowedBooks = new ArrayList<>();
-    }
-    
-    // Abstract method to be implemented by subclasses
-    public abstract boolean borrowBook(Book book);
-    
-    // Return a book
-    public void returnBook(Book book) {
-        if (borrowedBooks.remove(book)) {
+public User(String name,int userId){
+    this.userId = userId;
+    this.name = name;
+    this.borrowedBooks = new ArrayList<>();
+}
+
+
+
+
+    abstract void borrowBook(Book book);
+    void returnBook(Book book){
+        if(borrowedBooks.remove(book)){
             book.returnBook();
-            System.out.println("Book returned successfully.");
-        } else {
-            System.out.println("You didn't borrow this book.");
+            System.out.println("Book returned.");
+        }else{
+            System.out.println("Circumstance didn't borrow this book.");
         }
     }
-    
-    // View borrowed books
-    public void viewBorrowedBooks() {
-        if (borrowedBooks.isEmpty()) {
+    void viewBorrowedBooks(){
+        if(borrowedBooks.isEmpty()){
             System.out.println("No books borrowed.");
-        } else {
+        }else{
             System.out.println("Borrowed Books:");
-            for (Book book : borrowedBooks) {
+            for(Book book : borrowedBooks){
                 book.displayInfo();
             }
         }
     }
-    
-    // Getters
-    public String getUserId() { return userId; }
-    public String getName() { return name; }
+
 }
