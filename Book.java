@@ -1,44 +1,35 @@
 public class Book {
-    private String bookId;
-    private String title;
-    private String author;
-    private int availableCopies;
-    
-    // Constructors
-    public Book() {}
-    
-    public Book(String bookId, String title, String author, int availableCopies) {
-        this.bookId = bookId;
-        this.title = title;
+    String title,author;
+    int bookId,availableCopies;
+        Book(){}
+        Book(String title,String author,int availablecopies,int bookId){
         this.author = author;
-        this.availableCopies = availableCopies;
-    }
-    
-    // Getters and setters
-    public String getBookId() { return bookId; }
-    public String getTitle() { return title; }
-    public String getAuthor() { return author; }
-    public int getAvailableCopies() { return availableCopies; }
-    
-    public void setAvailableCopies(int copies) { this.availableCopies = copies; }
-    
-    // Method to display book info
-    public void displayInfo() {
-        System.out.println("ID: " + bookId + ", Title: " + title + 
-                          ", Author: " + author + ", Available: " + availableCopies);
-    }
-    
-    // Method to borrow a book
-    public boolean borrow() {
-        if (availableCopies > 0) {
-            availableCopies--;
-            return true;
+        this.availableCopies = availablecopies;
+        this.title = title;
+        this.bookId = bookId;
         }
-        return false;
+        Book(String title,String author,int bookId){
+        this.author = author;
+        this.availableCopies =0;
+        this.title = title;
+        this.bookId = bookId;
+        }
+void displayInfo(){
+    System.out.println("ID: "+bookId+","+"Title: "+title+","+"Author: "+author+","+"Available Copies: "+availableCopies+".");
+}
+void borrow(int neededBook){
+    if(neededBook>availableCopies || availableCopies == 0){
+        System.out.println("Insufficient Quantity!!!");
     }
-    
-    // Method to return a book
-    public void returnBook() {
-        availableCopies++;
+    else if(neededBook <= availableCopies){
+        System.out.println("Quantity Available...");
+        availableCopies--;
     }
+        }
+void returnBook(int givenBook){
+            availableCopies++;
+    }
+    void returnBook() {
+    }
+
 }
